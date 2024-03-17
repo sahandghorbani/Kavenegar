@@ -13,13 +13,8 @@ const fetchTickets = async () => {
 };
 
 const createTicket = async (ticketData: { title: string; message: string }) => {
-  try {
-    const response = await axios.post(`${baseURL}/tickets`, ticketData);
-    return response.data;
-  } catch (error) {
-    console.error('Error creating ticket:', error);
-    throw error;
-  }
+  const response = await axios.post(`${baseURL}/tickets`, ticketData);
+  return response.data;
 };
 const fetchTicket = async (ticketId: number) => {
   try {
@@ -31,19 +26,14 @@ const fetchTicket = async (ticketId: number) => {
   }
 };
 const postTicketResponse = async ({ ticketId, body }: { ticketId: string; body: string }) => {
-  try {
-    const response = await axios.get(`${baseURL}/tickets/${ticketId}`);
-    const ticketData = response.data;
-    const updatedTicketData = {
-      ...ticketData,
-      responses: [...ticketData.responses, body],
-    };
-    await axios.put(`${baseURL}/tickets/${ticketId}`, updatedTicketData);
-    return updatedTicketData;
-  } catch (error) {
-    console.error('Error adding response to ticket:', error);
-    throw error;
-  }
+  const response = await axios.get(`${baseURL}/tickets/${ticketId}`);
+  const ticketData = response.data;
+  const updatedTicketData = {
+    ...ticketData,
+    responses: [...ticketData.responses, body],
+  };
+  await axios.put(`${baseURL}/tickets/${ticketId}`, updatedTicketData);
+  return updatedTicketData;
 };
 
 export { fetchTickets, createTicket, fetchTicket, postTicketResponse };
