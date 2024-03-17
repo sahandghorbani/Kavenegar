@@ -30,5 +30,20 @@ const fetchTicket = async (ticketId: number) => {
     throw error;
   }
 };
+const postTicketResponse = async ({ ticketId, body }: { ticketId: string; body: string }) => {
+  try {
+    const response = await axios.get(`${baseURL}/tickets/${ticketId}`);
+    const ticketData = response.data;
+    const updatedTicketData = {
+      ...ticketData,
+      responses: [...ticketData.responses, body],
+    };
+    await axios.put(`${baseURL}/tickets/${ticketId}`, updatedTicketData);
+    return updatedTicketData;
+  } catch (error) {
+    console.error('Error adding response to ticket:', error);
+    throw error;
+  }
+};
 
-export { fetchTickets, createTicket ,fetchTicket };
+export { fetchTickets, createTicket, fetchTicket, postTicketResponse };
