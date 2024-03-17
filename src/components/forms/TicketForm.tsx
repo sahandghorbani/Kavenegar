@@ -3,6 +3,7 @@ import {
   Button,
   CircularProgress,
   FormControl,
+  FormHelperText,
   Grid,
   InputLabel,
   MenuItem,
@@ -72,13 +73,19 @@ const TicketForm: React.FC<ITicketFormProps> = ({ onSubmitSuccess }) => {
           />
         </Grid>
         <Grid item xs={12}>
-          <FormControl variant="outlined" fullWidth margin="normal">
+          <FormControl
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            error={errors.status ? true : false}
+          >
             <InputLabel>Status</InputLabel>
             <Select {...register('status', { required: true })} label="Status">
               <MenuItem value="pending">Pending</MenuItem>
               <MenuItem value="answered">Answered</MenuItem>
               <MenuItem value="closed">Closed</MenuItem>
             </Select>
+            {errors.status && <FormHelperText>Please select a status</FormHelperText>}
           </FormControl>
         </Grid>
         <Grid item xs={12}>

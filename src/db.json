@@ -1,30 +1,5 @@
 {
   "tickets": [
-    {
-      "id": 1,
-      "received": "2024-03-17T08:00:00.000Z",
-      "title": "Message Title 1",
-      "message": "This is message 1",
-      "status": "unread"
-    },
-    {
-      "id": 2,
-      "received": "2024-03-17T09:00:00.000Z",
-      "title": "Message Title 2",
-      "message": "This is message 2",
-      "status": "read"
-    },
-    {
-      "id": 3,
-      "received": "2024-03-17T10:00:00.000Z",
-      "title": "Message Title 3",
-      "message": "This is message 3",
-      "status": "unread"
-    },
-    {
-      "title": "new",
-      "message": "fiosk",
-      "id": 4
-    }
+ 
   ]
 }
