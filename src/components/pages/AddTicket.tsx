@@ -1,8 +1,8 @@
 'use client';
 import React from 'react';
 import { Button, Grid, Typography } from '@mui/material';
-import TicketFormSection from '@/components/forms/TicketForm';
 import { useRouter } from 'next/navigation';
+import TicketForm from '@/components/forms/TicketForm';
 
 const AddTicket = () => {
   const router = useRouter();
@@ -18,12 +18,17 @@ const AddTicket = () => {
       </Typography>
       <Grid justifyContent={'center'} display={'flex'} container spacing={2}>
         <Grid item xs={12}>
-          <Button onClick={() => router.back()} variant="contained" color="primary" sx={{ marginBottom: 2 }}>
-            Back
+          <Button
+            onClick={() => router.back()}
+            variant="contained"
+            color="primary"
+            sx={{ marginBottom: 2 }}
+          >
+            Close The Ticket
           </Button>
         </Grid>
         <Grid justifyContent={'center'} display={'flex'} item xs={12}>
-          <TicketFormSection onSubmitSuccess={handleSubmitSuccess} />
+          <TicketForm onSubmitSuccess={handleSubmitSuccess} />
         </Grid>
       </Grid>
     </div>
@@ -31,4 +36,3 @@ const AddTicket = () => {
 };
 
 export default AddTicket;
-
