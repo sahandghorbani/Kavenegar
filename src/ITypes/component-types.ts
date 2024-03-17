@@ -1,12 +1,12 @@
-import { TicketData } from '@/ITypes/IGeneral';
+import { Ticket, TicketData } from '@/ITypes/IGeneral';
 
 export interface ITicketItemProps {
   params: Record<string, number>;
 }
 
 export interface ITicketListTableProps {
-  data: TicketData;
-  handleClick: (ticketId: number) => void;
+  data: Ticket[];
+  handleClick: (ticketId: string) => void;
 }
 
 export interface ITicketFormProps {

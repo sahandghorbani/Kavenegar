@@ -4,6 +4,7 @@ export interface Ticket {
   message: string;
   status: string;
   Date: number;
+  responses: string[];
 }
 
 export interface TicketData {
