@@ -21,5 +21,14 @@ const createTicket = async (ticketData: { title: string; message: string }) => {
     throw error;
   }
 };
+const fetchTicket = async (ticketId: number) => {
+  try {
+    const response = await axios.get(`${baseURL}/tickets/${ticketId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching ticket:', error);
+    throw error;
+  }
+};
 
-export { fetchTickets, createTicket };
+export { fetchTickets, createTicket ,fetchTicket };

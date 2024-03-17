@@ -1,65 +1,34 @@
 'use client';
 import React from 'react';
-import { useForm } from 'react-hook-form';
-import { useMutation } from 'react-query';
-import {
-  TextField,
-  Button,
-  CircularProgress,
-  Select,
-  MenuItem,
-  FormControl,
-  InputLabel,
-} from '@mui/material';
-import { createTicket } from '@/api'; // Import createTicket function from api.ts
+import { Button, Grid, Typography } from '@mui/material';
+import TicketFormSection from '@/components/forms/TicketForm';
+import { useRouter } from 'next/navigation';
 
-const TicketForm = () => {
-  const { register, handleSubmit, reset } = useForm();
-  const createNewTicket = useMutation(createTicket);
+const AddTicket = () => {
+  const router = useRouter();
 
-  const onSubmit = async (data: any) => {
-    try {
-      await createNewTicket.mutateAsync(data);
-      reset();
-    } catch (error) {
-      console.error('Error creating ticket:', error);
-    }
+  const handleSubmitSuccess = () => {
+    router.push('/list'); // Redirect to the ticket list page after successful form submission
   };
 
   return (
     <div>
-      <h2>Create New Ticket</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <TextField
-          {...register('title', { required: true })}
-          label="Title"
-          variant="outlined"
-          fullWidth
-          margin="normal"
-        />
-        <TextField
-          {...register('message', { required: true })}
-          label="Message"
-          variant="outlined"
-          fullWidth
-          margin="normal"
-          multiline
-          rows={4}
-        />
-        <FormControl variant="outlined" fullWidth margin="normal">
-          <InputLabel>Status</InputLabel>
-          <Select {...register('status', { required: true })} label="Status">
-            <MenuItem value="pending">Pending</MenuItem>
-            <MenuItem value="answered">Answered</MenuItem>
-            <MenuItem value="closed">Closed</MenuItem>
-          </Select>
-        </FormControl>
-        <Button type="submit" variant="contained" disabled={createNewTicket.isLoading}>
-          {createNewTicket.isLoading ? <CircularProgress size={24} /> : 'Submit'}
-        </Button>
-      </form>
+      <Typography variant="h5" component="h2" gutterBottom>
+        Ticket List Data:
+      </Typography>
+      <Grid justifyContent={'center'} display={'flex'} container spacing={2}>
+        <Grid item xs={12}>
+          <Button onClick={() => router.back()} variant="contained" color="primary" sx={{ marginBottom: 2 }}>
+            Back
+          </Button>
+        </Grid>
+        <Grid justifyContent={'center'} display={'flex'} item xs={12}>
+          <TicketFormSection onSubmitSuccess={handleSubmitSuccess} />
+        </Grid>
+      </Grid>
     </div>
   );
 };
 
-export default TicketForm;
+export default AddTicket;
+
