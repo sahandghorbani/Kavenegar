@@ -1,8 +1,8 @@
-'use client'
+'use client';
 import React from 'react';
 import { useQuery } from 'react-query';
 import { fetchTickets } from '@/api';
-import { Card, CardContent, CircularProgress, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Divider, Button } from '@mui/material';
+import { Card, CardContent, CircularProgress, Typography, Divider, Button } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import TicketListTable from '@/components/tables/TicketListTable';
@@ -11,7 +11,7 @@ const TicketList = () => {
   const router = useRouter();
   const { isLoading, error, data } = useQuery('tickets', fetchTickets);
 
-  const handleClick = (ticketId:number) => {
+  const handleClick = (ticketId: string) => {
     router.push(`/list/${ticketId}`);
   };
 
@@ -19,7 +19,7 @@ const TicketList = () => {
   if (error) return <div>Error: {(error as any).message}</div>;
 
   return (
-    <Card  sx={{ minWidth: 300, }}>
+    <Card sx={{ minWidth: 300 }}>
       <CardContent>
         <Typography variant="h5" component="h2" gutterBottom>
           Ticket List Data:
