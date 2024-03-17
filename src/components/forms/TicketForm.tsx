@@ -13,9 +13,9 @@ import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 import { createTicket } from '@/api';
 import { IFormData } from '@/ITypes/IFormValus';
-import { TicketFormProps } from '@/ITypes/component-types';
+import { ITicketFormProps } from '@/ITypes/component-types';
 
-const TicketForm: React.FC<TicketFormProps> = ({ onSubmitSuccess }) => {
+const TicketForm: React.FC<ITicketFormProps> = ({ onSubmitSuccess }) => {
   const {
     register,
     handleSubmit,
@@ -25,7 +25,7 @@ const TicketForm: React.FC<TicketFormProps> = ({ onSubmitSuccess }) => {
   const createNewTicket = useMutation(createTicket);
 
   const onSubmit = async (data: any) => {
-    const newData = { ...data, Date: Date.now() };
+    const newData = { ...data, Date: Date.now(), responses: [] };
     try {
       await createNewTicket.mutateAsync(newData);
       reset();
