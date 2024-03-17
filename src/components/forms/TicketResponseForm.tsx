@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import { postTicketResponse } from '@/api'; // Assuming API function is defined
 import { TextField, Button, CircularProgress } from '@mui/material';
 import { TicketResponseFormProps } from '@/ITypes/component-types';
@@ -14,7 +14,12 @@ const TicketResponseForm: FC<TicketResponseFormProps> = ({ ticketId }) => {
     formState: { errors },
     setError,
   } = useForm<ITicketResponseFormValues>();
-  const mutation = useMutation(postTicketResponse);
+  const queryClient = useQueryClient();
+  const mutation = useMutation(postTicketResponse, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['ticket', ticketId]);
+    },
+  });
 
   const onSubmit: SubmitHandler<ITicketResponseFormValues> = async (data) => {
     try {
