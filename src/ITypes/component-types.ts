@@ -1,12 +1,17 @@
-export interface TicketItemProps {
+import { TicketData } from '@/ITypes/IGeneral';
+
+export interface ITicketItemProps {
   params: Record<string, number>;
 }
 
-export interface TicketListTableProps {
-  data: any[];
+export interface ITicketListTableProps {
+  data: TicketData;
   handleClick: (ticketId: number) => void;
 }
 
-export interface TicketFormProps {
+export interface ITicketFormProps {
   onSubmitSuccess: () => void;
+}
+export interface TicketResponseFormProps {
+  ticketId: string;
 }

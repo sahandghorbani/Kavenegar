@@ -3,3 +3,7 @@ export type IFormData = {
   message: string;
   status: string;
 };
+
+export interface ITicketResponseFormValues {
+  response: string;
+}
