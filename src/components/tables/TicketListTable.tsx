@@ -1,10 +1,6 @@
 import React, { FC } from 'react';
 import { Chip, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
-
-interface TicketListTableProps {
-  data: any[];
-  handleClick: (ticketId: number) => void;
-}
+import { TicketListTableProps } from '@/ITypes/component-types';
 
 const TicketListTable: FC<TicketListTableProps> = ({ data, handleClick }) => {
   return (
